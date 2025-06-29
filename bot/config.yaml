@@ -1,0 +1,23 @@
+env: "local"
+bot:
+  address: 0.0.0.0:33031
+  max_idle: 5
+  max_active: 10
+  storage_path: redis:6379
+  timeout: 5s
+bot_clients:
+  scraper:
+    address: http://scrapper:33032
+    timeout: 5s
+    retry: 5
+    backoff: 2s
+  kafka:
+    address: kafka:9092
+    base_topic: update-link
+    dlq_topic: dlq-update-link
+    timeout: 5s
+  circuit_breaker:
+    max_requests: 1
+    timeout: 1s
+    sliding_window_size: 1
+    failure_count: 1

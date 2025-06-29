@@ -1,0 +1,36 @@
+env: "local"
+scraper:
+  address: 0.0.0.0:33032
+  timeout: 5s
+  access_type: "ORM"
+  message_transport: "HTTP"
+  max_conn: 13
+  min_conn: 5
+  storage_path: postgresql://postgres:password@postgresql:5432/mydb
+  batch_size: 50
+scraper_clients:
+  bot:
+    address: http://bot:33031
+    timeout: 5s
+    retry: 5
+    backoff: 2s
+  kafka:
+    address: kafka:9092
+    base_topic: update-link
+    dlq_topic: dlq-update-link
+    timeout: 5s
+    retry: 5
+    backoff: 2s
+  github:
+    timeout: 10s
+    retry: 5
+    backoff: 2s
+  stack_overflow:
+    timeout: 10s
+    retry: 5
+    backoff: 2s
+  circuit_breaker:
+    max_requests: 1
+    timeout: 1s
+    sliding_window_size: 1
+    failure_count: 1

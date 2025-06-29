@@ -1,0 +1,5 @@
+outpkg: mocks
+with-expecter: true
+exported: True
+disable-version-string: True
+quiet: true
